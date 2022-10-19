@@ -32,11 +32,29 @@ class FileHelpers {
 
 class Handler implements URLHandler {
     List<File> files;
+    String output = "";
+    int fileNum = 0;
     Handler(String directory) throws IOException {
       this.files = FileHelpers.getFiles(Paths.get(directory));
     }
-    public String handleRequest(URI url) throws IOException {
-      return "Don't know how to handle that path!";
+    public String handleRequest(URI url) throws IOException 
+    {
+        if (url.getPath().equals("/")) 
+        {
+            return String.format("There are %d files to search", this.files.getnumberoffilestosearch);
+        } 
+        else 
+        {
+            System.out.println("Path: " + url.getPath());
+            if (url.getPath().contains("/search")) 
+            {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("q")) 
+                {
+                    
+                }
+            }
+        return "Don't know how to handle that path!";
     }
 }
 
